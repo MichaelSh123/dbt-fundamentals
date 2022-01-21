@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: stripe
+    database: raw
+    schema: stripe
+    tables:
+      - name: payment
+        description: A table for good and bad payments for orders.
+        loaded_at_field: _BATCHED_AT
+        freshness:
+            warn_after: {count: 25, period: day}
+            error_after: {count: 40, period: day}
